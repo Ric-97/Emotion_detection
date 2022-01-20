@@ -2,14 +2,14 @@
 
 #####################################################################
 # Load relevant packages
-library("httr")
-library("XML")
-library("stringr")
-library("ggplot2")
+source(here::here("script","00_setup.R"))
 
 # Define image source
 #img.url   = 'https://www.dropbox.com/s/6jarb0t7dht47dd/image_000001.jpeg?dl=0'
-img.url <- "https://dangelodario.it/wp-content/uploads/2020/03/meloni-conte.jpg"
+#img.url <- "https://dangelodario.it/wp-content/uploads/2020/03/meloni-conte.jpg"
+#img.url <- "https://drive.google.com/file/d/1iZ7wmcQvggYabFMiuj1qY3_bcVxdbkwv/view?usp=sharing"
+#img.url <- "https://www.youtube.com/watch?v=T7_GJVbxGwM"
+img.url <- "https://static.blitzquotidiano.it/wp/wp-content/uploads/2020/03/giorgia_meloni_ansa.jpg"
 
 # Define Microsoft API URL to request data
 #URL.emoface = 'https://api.projectoxford.ai/emotion/v1.0/recognize'
@@ -35,7 +35,9 @@ faceEMO
 
 # Reuqest results from face analysis
 meloni = httr::content(faceEMO)[[1]]
+meloni
 meloni$faceAttributes$emotion
+meloni$faceAttributes$hair
 # Define results in data frame
 o <- as.data.frame(as.matrix(meloni$faceAttributes$emotion))
 

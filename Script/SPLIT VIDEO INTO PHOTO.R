@@ -2,43 +2,15 @@
 # SPLIT VIDEO INTO PHOTO #
 ##########################
 
-
-# HELP: https://www.r-bloggers.com/2019/03/human-face-detection-with-r/
-# HELP: http://thinktostart.com/analyze-face-emotions-r/
-# HELP: https://docs.ropensci.org/magick/articles/intro.html
-
-# installare Cmake --> fatto
-# installare Rtools --> fatto
-# installare ROpenCVLite --> fatto
-# installare OpenCV --> Fatto
-# installare Rvision --> da fare
-# devtools::install_github("swarm-lab/Rvision")
-# install.packages("av")
-# install.packages("magick")
-# install.packages("image.libfacedetection")#, repos = "https://bnosac.github.io/drat")
-# install.packages("XML")
-# install.packages("ggplot2")
- 
- #setwd("C:/Users/Riccardo/Desktop/Emotion detection/Emotion_detection")
 here::here("")
 
 # SETUP
-# Load relevant packages
-library(tools)
-library("httr")
-library("XML")
-library("stringr")
-library("ggplot2")
-library(av)
-library(magick)
-library(image.libfacedetection)
-library(Rvision)
-#help(image_reAD)
-
+# Load  packages
+source(here::here("script","00_setup.R"))
 #---------------------------------------
 
 mainDir <- file.path(here::here(""),"/foto")
-video_path <- "video/meloni_Trim.mp4"
+video_path <- "video/test2-Draghi.mp4"
 subDir <- file_path_sans_ext(basename(video_path))
 
 if (file.exists(subDir)){
@@ -55,7 +27,7 @@ if (file.exists(subDir)){
 fotos <- av_video_images(video_path,
                          destdir = destdir,
                          format = "jpg",
-                         fps = 0.5)
+                         fps = 0.8)
 fotos
 
 #-------------------------------------------------
