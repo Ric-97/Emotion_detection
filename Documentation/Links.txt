@@ -1,0 +1,5 @@
+Usefull Links for the project
+
+- https://github.com/ageitgey/face_recognition
+- https://github.com/priya-dwivedi/face_and_emotion_detection
+- 
