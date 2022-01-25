@@ -1,25 +1,32 @@
-# new test from http://thinktostart.com/analyze-face-emotions-r/
+---
+title: "Emotion detection"
+author: "Riccardo Ruta"
+date: "xx/xx/2022"
+output: html_document
+---
 
-#####################################################################
-# Load relevant packages
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 source(here::here("script","00_setup.R"))
+```
 
+### SCOPE
+
+The aim of this project is to investigate the gender stereotypes present in the communication styles made by the main Italian politicians.
+
+### ANALYSIS
+
+The analysis will be conducted by exploiting the potential of facial recognition and emotional recognition algorithms by analyzing video interviews and television appearances of Italian politicians. A sample of photos will be extracted from each video and the frequency of emotions will be counted considering for each photo the two emotions with the greatest confidence and, in this way, the presence or absence of gender stereotypes in the communicative style will be verified.
+
+```{r}
 # Define image source
-#img.url   = 'https://www.dropbox.com/s/6jarb0t7dht47dd/image_000001.jpeg?dl=0'
-#img.url <- "https://dangelodario.it/wp-content/uploads/2020/03/meloni-conte.jpg"
-#img.url <- "https://drive.google.com/file/d/1iZ7wmcQvggYabFMiuj1qY3_bcVxdbkwv/view?usp=sharing"
-#img.url <- "https://www.youtube.com/watch?v=T7_GJVbxGwM"
 img.url <- "https://static.blitzquotidiano.it/wp/wp-content/uploads/2020/03/giorgia_meloni_ansa.jpg"
-
 
 # Download and save the image
 download_path <- file.path("foto/download/y.jpeg")
 download.file(img.url,download_path, mode = 'wb')
 
-
-
 # Define Microsoft API URL to request data
-#URL.emoface = 'https://api.projectoxford.ai/emotion/v1.0/recognize'
 URL.emoface = file.path(endpoint,"face/v1.0/detect?detectionModel=detection_01&returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise")
 
 # Define access key
@@ -38,13 +45,13 @@ faceEMO = POST(
 )
 
 # Show request results (if Status=200, request is okay)
-faceEMO
+print(faceEMO)
 
 # Reuqest results from face analysis
 meloni = httr::content(faceEMO)[[1]]
-meloni
-meloni$faceAttributes$emotion
-meloni$faceAttributes$hair
+
+print(meloni$faceAttributes$emotion)
+
 
 # Define results in data frame
 o <- as.data.frame(as.matrix(meloni$faceAttributes$emotion))
@@ -57,7 +64,11 @@ colnames(o)[1] <- "Level"
 # Define names
 o$Emotion<- rownames(o)
 
-o
+```
+
+![](foto/download/y.jpeg)
+
+```{r pressure, echo=FALSE}
 # Make plot
 ggplot(data=o, aes(x=Emotion, y=Level)) + geom_bar(stat="identity")
-
+```
