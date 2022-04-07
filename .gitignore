@@ -40,3 +40,29 @@ vignettes/*.pdf
 
 # Tokens
 tokens.R
+
+# Python environment
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.emo_env
+emo_env/
+/emo_env
+
+# exlude big files
+.video
+/video
+video/
+
+.foto
+/foto
+foto/
+
+.output
+/output
+output/
