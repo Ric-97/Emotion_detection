@@ -15,4 +15,5 @@ A sample of photos will be extracted from each video and the frequency of emotio
 - activate new env --> **.\name_of_env\Scripts\activate**
 - install all the packages needed for the project --> **pip3 install -r requirements.txt**
 - Ignore warnings for **pip updates**
+- set the path where is stored your video in **location_videofile** inside FER.py (line 9)
 - run --> **python FER.py**

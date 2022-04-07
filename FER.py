@@ -2,8 +2,7 @@
 
 from fer import Video
 from fer import FER
-import os
-import sys
+#import sys
 import pandas as pd
 
 # Put in the location of the video file that has to be processed
