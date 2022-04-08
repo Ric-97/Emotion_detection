@@ -22,7 +22,7 @@ if uploaded_video is not None:
     path = st.text_input('Path to your video', 'path\where\is\your\\video.mp4')
 
 
-st.video(uploaded_video, format="video/mp4", start_time=0)
+video = st.video(uploaded_video, format="video/mp4", start_time=0)
 
 # Put in the location of the video file that has to be processed
 #location_videofile = "video/meloni_trim.mp4"
@@ -33,7 +33,7 @@ if button:
     face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
 
     # Input the video for processing
-    input_video = Video(path)
+    input_video = Video(video)
 
     # The Analyze() function will run analysis on every frame of the input video. 
     # It will create a rectangular box around every image and show the emotion values next to that.
