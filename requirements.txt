@@ -1,2 +1,4 @@
 fer
 pandas
+streamlit
+opencv-python-headless
