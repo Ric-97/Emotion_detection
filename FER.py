@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 # set the title for the app
 col1, mid, col2 = st.columns([1,3,20])
 with col1:
-    st.image('logos/logo.png', width=100)
+    st.image('logos/logo.png', width=200)
 #with col2:
     #st.title("iDry")
 
