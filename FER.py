@@ -6,6 +6,7 @@ from fer import FER
 import cv2
 #import sys
 import pandas as pd
+import tempfile
 
 # set the layout to wide
 st.set_page_config(layout="wide")
@@ -18,10 +19,14 @@ with col1:
     #st.title("iDry")
 
 uploaded_video = st.file_uploader("video",type=['mp4'])
+
+tfile = tempfile.NamedTemporaryFile(delete=False)
+tfile.write(uploaded_video.read())
+vf = cv2.VideoCapture(tfile.name)
+
 if uploaded_video is not None:
     path = st.text_input('Path to your video', 'path\where\is\your\\video.mp4')
     bytes_data = uploaded_video.getvalue()
-    st.write(bytes_data)
 
 
 video = st.video(uploaded_video, format="video/mp4", start_time=0)
@@ -35,7 +40,7 @@ if button:
     face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
 
     # Input the video for processing
-    input_video = Video(bytes_data)
+    input_video = Video(tfile.name)
 
     # The Analyze() function will run analysis on every frame of the input video. 
     # It will create a rectangular box around every image and show the emotion values next to that.
