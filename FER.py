@@ -30,7 +30,9 @@ if button:
     # Build the Face detection detector
     face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
     # Input the video for processing
-    input_video = Video(uploaded_video)
+    print(bytes_video)
+    bytes_video
+    input_video = Video(bytes_video)
 
     # The Analyze() function will run analysis on every frame of the input video. 
     # It will create a rectangular box around every image and show the emotion values next to that.
