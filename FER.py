@@ -3,6 +3,7 @@
 import streamlit as st
 from fer import Video
 from fer import FER
+import cv2
 #import sys
 import pandas as pd
 
@@ -16,9 +17,10 @@ with col1:
 #with col2:
     #st.title("iDry")
 
-uploaded_video = st.file_uploader("")
-#if uploaded_video is not None:
-bytes_video = uploaded_video.getvalue()
+uploaded_video = st.file_uploader("video",type=['mp4'])
+if uploaded_video is not None:
+    path = st.text_input('Path to your video', 'path\where\is\your\\video.mp4')
+
 
 st.video(uploaded_video, format="video/mp4", start_time=0)
 
@@ -29,10 +31,9 @@ button = st.button('Start analysis')
 if button:
     # Build the Face detection detector
     face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
+
     # Input the video for processing
-    print(bytes_video)
-    bytes_video
-    input_video = Video(bytes_video)
+    input_video = Video(path)
 
     # The Analyze() function will run analysis on every frame of the input video. 
     # It will create a rectangular box around every image and show the emotion values next to that.
