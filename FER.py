@@ -17,8 +17,8 @@ with col1:
     #st.title("iDry")
 
 uploaded_video = st.file_uploader("")
-if uploaded_video is not None:
-     bytes_video = uploaded_video.getvalue()
+#if uploaded_video is not None:
+bytes_video = uploaded_video.getvalue()
 
 st.video(uploaded_video, format="video/mp4", start_time=0)
 
