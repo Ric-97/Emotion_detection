@@ -2,4 +2,5 @@ fer
 pandas
 streamlit
 opencv-python-headless
+opencv-python==4.1.2.30  
 tensorflow
