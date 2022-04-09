@@ -35,7 +35,7 @@ if uploaded_video is not None:
 button = st.button('Start analysis')
 if button:
     # Build the Face detection detector
-    face_detector = FER(mtcnn=False) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
+    face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
 
     # Input the video for processing
     input_video = Video(tfile.name)
@@ -43,7 +43,7 @@ if button:
     # The Analyze() function will run analysis on every frame of the input video. 
     # It will create a rectangular box around every image and show the emotion values next to that.
     # Finally, the method will publish a new video that will have a box around the face of the human with live emotion values.
-    processing_data = input_video.analyze(face_detector, display=True)
+    processing_data = input_video.analyze(face_detector, display=False)
 
     # We will now convert the analysed information into a dataframe.
     # This will help us import the data as a .CSV file to perform analysis over it later
