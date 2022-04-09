@@ -1,5 +1,5 @@
 fer
 pandas
 streamlit
-opencv-python-headless ==4.1.2.30  
+opencv-python-headless
 tensorflow

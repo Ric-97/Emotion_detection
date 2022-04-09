@@ -35,7 +35,7 @@ if uploaded_video is not None:
 button = st.button('Start analysis')
 if button:
     # Build the Face detection detector
-    face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
+    face_detector = FER(mtcnn=False) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
 
     # Input the video for processing
     input_video = Video(tfile.name)
