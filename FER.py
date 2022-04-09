@@ -12,24 +12,22 @@ import tempfile
 st.set_page_config(layout="wide")
 
 # set the title for the app
-col1, mid, col2 = st.columns([1,3,20])
+col1, mid, col2 = st.columns([1,3,15])
 with col1:
     st.image('logos/logo.png', width=200)
-#with col2:
-    #st.title("iDry")
+with col2:
+    st.title("Video sentiment analysis")
 
-uploaded_video = st.file_uploader("video",type=['mp4'])
+uploaded_video = st.file_uploader("",type=['mp4'])
 
-tfile = tempfile.NamedTemporaryFile(delete=False)
-tfile.write(uploaded_video.read())
-vf = cv2.VideoCapture(tfile.name)
+#vf = cv2.VideoCapture(tfile.name)
 
 if uploaded_video is not None:
-    path = st.text_input('Path to your video', 'path\where\is\your\\video.mp4')
+    #path = st.text_input('Path to your video', 'path\where\is\your\\video.mp4')
     bytes_data = uploaded_video.getvalue()
-
-
-video = st.video(uploaded_video, format="video/mp4", start_time=0)
+    tfile = tempfile.NamedTemporaryFile(delete=False)
+    tfile.write(uploaded_video.read())
+    video = st.video(uploaded_video, format="video/mp4", start_time=0)
 
 # Put in the location of the video file that has to be processed
 #location_videofile = "video/meloni_trim.mp4"
@@ -37,7 +35,7 @@ video = st.video(uploaded_video, format="video/mp4", start_time=0)
 button = st.button('Start analysis')
 if button:
     # Build the Face detection detector
-    face_detector = FER(mtcnn=True) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
+    face_detector = FER(mtcnn=False) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
 
     # Input the video for processing
     input_video = Video(tfile.name)
@@ -45,7 +43,7 @@ if button:
     # The Analyze() function will run analysis on every frame of the input video. 
     # It will create a rectangular box around every image and show the emotion values next to that.
     # Finally, the method will publish a new video that will have a box around the face of the human with live emotion values.
-    processing_data = input_video.analyze(face_detector, display=False)
+    processing_data = input_video.analyze(face_detector, display=True)
 
     # We will now convert the analysed information into a dataframe.
     # This will help us import the data as a .CSV file to perform analysis over it later
