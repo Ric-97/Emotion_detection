@@ -58,7 +58,9 @@ if uploaded_video is not None:
             vid_df = input_video.get_emotions(vid_df)
 
             # Plotting the emotions against time in the video
+            st.write("**Plotting the emotions against time in the video**")
             pltfig = vid_df.plot(figsize=(20, 8), fontsize=16).get_figure()
+            pltfig
 
             # We will now work on the dataframe to extract which emotion was prominent in the video
             angry = sum(vid_df.angry)
