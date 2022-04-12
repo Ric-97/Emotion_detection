@@ -77,7 +77,8 @@ if uploaded_video is not None:
             score_comparisons = pd.DataFrame(emotions, columns = ['Human Emotions'])
             score_comparisons['Emotion Value from the Video'] = emotions_values
             score_comparisons
-
+            
+            #DOWNLOAD BUTTON FOR DATASET
             @st.cache
             def convert_df(df):
                 # IMPORTANT: Cache the conversion to prevent computation on every rerun
@@ -92,9 +93,8 @@ if uploaded_video is not None:
                 file_name='sentiment_data.csv',
                 mime='text/csv',
             )
-            
-            # HERE I WILL Add PLOTS
-            
+            end = "end"
+            if end == "end":
+                st.balloons()
 
-    st.success('Done!')
-
+    st.success("Done!")
