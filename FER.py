@@ -83,8 +83,9 @@ if uploaded_video is not None:
 
             csv = convert_df(my_df)
 
+            st.write("**ATTENTION YOU CAN DOWNLOAD THE DATA ONLY ONCE, AFTER THE CLICK YOU MUST RERUN THE ANALYSIS**")
             st.download_button(
-                label="Download data as CSV",
+                label="Download the entire dataset as CSV",
                 data=csv,
                 file_name='sentiment_data.csv',
                 mime='text/csv',
