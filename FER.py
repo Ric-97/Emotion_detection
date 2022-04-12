@@ -20,7 +20,7 @@ with col1:
 with col2:
     st.title("Video sentiment analysis")
 
-st.write("Upload your .mp4 file then click on **START THE ANALYSIS**, please note that the time for analysis is equivalent (or slightly longer) to the length of the video")
+st.write("Upload your .mp4 file then click on **START THE ANALYSIS**, please note that the time for analysis is is about 1.5 times the length of the video")
 uploaded_video = st.file_uploader("",type=['mp4'])
 
 #vf = cv2.VideoCapture(tfile.name)
