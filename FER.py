@@ -38,20 +38,17 @@ if uploaded_video is not None:
     button = st.button('START THE ANALYSIS')
     with st.spinner('Please wait till FER made the magic...'):
         if button:
-            # Build the Face detection detector
+            # Build the Face detector
             face_detector = FER(mtcnn=False) # mtcnn = True to use the more accurate MTCNN network (default  OpenCV's Haar Cascade classifier)
 
-            # Input the video for processing
+            # Input the video
             input_video = Video(tfile.name)
 
-            # The Analyze() function will run analysis on every frame of the input video. 
-            # It will create a rectangular box around every image and show the emotion values next to that.
-            # Finally, the method will publish a new video that will have a box around the face of the human with live emotion values.
+            # Use the Analyze() function: analysis made on every frame of the video. 
+            # If display = True you can see the results of the analysis live
             processing_data = input_video.analyze(face_detector, display=False)
 
-            # We will now convert the analysed information into a dataframe.
-            # This will help us import the data as a .CSV file to perform analysis over it later
-            
+            # Extract the information 
             my_df = input_video.to_pandas(processing_data)
             vid_df = input_video.to_pandas(processing_data)
             vid_df = input_video.get_first_face(vid_df)
@@ -62,7 +59,7 @@ if uploaded_video is not None:
             pltfig = vid_df.plot(figsize=(20, 8), fontsize=16).get_figure()
             pltfig
 
-            # We will now work on the dataframe to extract which emotion was prominent in the video
+            # Sum the emotions detected in the video
             angry = sum(vid_df.angry)
             disgust = sum(vid_df.disgust)
             fear = sum(vid_df.fear)
@@ -74,8 +71,8 @@ if uploaded_video is not None:
             emotions = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
             emotions_values = [angry, disgust, fear, happy, sad, surprise, neutral]
 
-            score_comparisons = pd.DataFrame(emotions, columns = ['Human Emotions'])
-            score_comparisons['Emotion Value from the Video'] = emotions_values
+            score_comparisons = pd.DataFrame(emotions, columns = ['Emotions'])
+            score_comparisons['Emotion Sum from all the frames'] = emotions_values
             score_comparisons
             
             #DOWNLOAD BUTTON FOR DATASET
