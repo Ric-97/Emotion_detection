@@ -13,8 +13,9 @@ https://user-images.githubusercontent.com/93921456/163222309-b7f8f747-75de-40de-
 ### INSTRUCTIONS TO RUN THE APP ON LOCALHOST
 
 - Install **python 3.6**
-- install virtual env --> **python -m pip install --user virtualenv**
-- create new environment --> **python -m venv name_of_env**
-- activate new env --> **.\name_of_env\Scripts\activate**
-- install all the packages needed for the project --> **pip3 install -r requirements.txt**
-- run --> **streamlit run FER.py**
+- Download the code from main branch in your project folder
+- Install virtual env --> **python -m pip install --user virtualenv**
+- In your project folder create a new virtual environment --> **python -m venv name_of_env**
+- Activate new env --> **.\name_of_env\Scripts\activate**
+- Install all the packages needed for the project --> **pip3 install -r requirements.txt**
+- Run --> **streamlit run FER.py**
